@@ -1,14 +1,14 @@
 ---
-- name: Docker | CE | DNF | Ensure dnf-plugins-core is installed
+- name: Docker | DNF | Ensure dnf-plugins-core is installed
   dnf:
     name: dnf-plugins-core
 
-- name: Docker | CE | DNF | Ensure Docker repo is ready
+- name: Docker | DNF | Ensure Docker repo is ready
   shell: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
   args:
     creates: /etc/yum.repos.d/docker-ce.repo
 
-- name: Docker | CE | DNF | Ensure edge repository is enabled
+- name: Docker | DNF | Ensure edge repository is enabled
   yum_repository:
     name: docker-ce-edge
     description: "Docker CE Edge - $basearch"
@@ -20,10 +20,10 @@
   when: docker_channel == "edge"
   notify:  Docker | CE | Upgrade to Edge
 
-- name: Docker | CE | DNF | Perform specific os tasks
+- name: Docker | DNF | Perform specific os tasks
   include: "os/{{ ansible_distribution | lower }}.yml"
 
-- name: Docker | CE | DNF | Ensure deprecated docker packages are removed
+- name: Docker | DNF | Ensure deprecated docker packages are removed
   dnf:
     name: "{{ item }}"
     state: absent
@@ -34,7 +34,7 @@
     - docker-engine-selinux
     - docker-engine
 
-- name: Docker | CE | DNF | Ensure Docker package is installed
+- name: Docker | DNF | Ensure Docker package is installed
   dnf:
     name: docker-ce
     state: present

@@ -1,8 +1,6 @@
 ---
 docker_config: {}
-docker_edition: ce
 docker_channel: stable
-docker_ee_version: 17.03
 docker_compose: no
 
 docker_options:

@@ -5,17 +5,17 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: ""
   - distribution: fedora
     version: 25
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: ""
   - distribution: fedora
     version: 24
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: ""
   - distribution: ubuntu
     version: xenial
@@ -42,17 +42,17 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: fedora
     version: 25
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: fedora
     version: 24
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged"
+    run_opts: "'--privileged'"
     extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: ubuntu
     version: xenial
@@ -86,7 +86,6 @@ script:
   - container_id=$(mktemp)
   - 'sudo docker run --privileged --detach --volume="${PWD}":/etc/ansible/roles/docker_ansible_role:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -v /etc/ansible/roles/docker_ansible_role/travis/test.yml --syntax-check'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -v ${extra_vars} /etc/ansible/roles/docker_ansible_role/travis/test.yml'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -v ${extra_vars} /etc/ansible/roles/docker_ansible_role/travis/test.yml'
   - >
     sudo docker exec "$(cat ${container_id})" ansible-playbook -v ${extra_vars} /etc/ansible/roles/docker_ansible_role/travis/test.yml

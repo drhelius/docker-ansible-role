@@ -7,7 +7,7 @@
     name: docker
     state: restarted
 
-- name: Docker | CE | Upgrade to Edge
+- name: Docker | Upgrade to Edge
   package:
     name: docker-ce
     state: latest

@@ -1,14 +1,14 @@
 ---
-- name: Docker | CE | YUM | Ensure yum-utils is installed
+- name: Docker | YUM | Ensure yum-utils is installed
   yum:
     name: yum-utils
 
-- name: Docker | CE | YUM | Ensure Docker repo is ready
+- name: Docker | YUM | Ensure Docker repo is ready
   shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   args:
     creates: /etc/yum.repos.d/docker-ce.repo
 
-- name: Docker | CE | YUM | Ensure edge repository is enabled
+- name: Docker | YUM | Ensure edge repository is enabled
   yum_repository:
     name: docker-ce-edge
     description: "Docker CE Edge - $basearch"
@@ -18,12 +18,12 @@
     enabled: yes
     file: docker-ce
   when: docker_channel == "edge"
-  notify:  Docker | CE | Upgrade to Edge
+  notify:  Docker | Upgrade to Edge
 
-- name: Docker | CE | YUM | Perform specific os tasks
+- name: Docker | YUM | Perform specific os tasks
   include: "os/{{ ansible_distribution | lower }}.yml"
 
-- name: Docker | CE | YUM | Ensure deprecated docker packages are removed
+- name: Docker | YUM | Ensure deprecated docker packages are removed
   yum:
     name: "{{ item }}"
     state: absent
@@ -32,7 +32,7 @@
     - docker-common
     - docker-engine
 
-- name: Docker | CE | YUM | Ensure Docker package is installed
+- name: Docker | YUM | Ensure Docker package is installed
   yum:
     name: docker-ce
     state: present

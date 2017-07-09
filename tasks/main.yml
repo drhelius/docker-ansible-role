@@ -1,33 +1,26 @@
 ---
-- name: Docker | EE | Check Requirements
-  fail:
-    msg: "Variable docker_ee_url is required and is not defined."
-  when:
-    - docker_ee_url is not defined
-    - docker_edition == "ee"
-
 - name: Docker | Setup storage
   include: "storage/{{ docker_storage_driver }}.yml"
   when: docker_storage_driver is defined
 
 - name: Docker | Installation
-  include: "{{ docker_edition }}/{{ ansible_pkg_mgr }}.yml"
-
-- name: Docker | Ensure Docker service starts at boot
-  service:
-    name: docker
-    enabled: yes
+  include: "pkgmgr/{{ ansible_pkg_mgr }}.yml"
 
 - name: Docker | Configuration
-  include: configuration.yml
+  include: configuration/configuration.yml
 
 - name: Docker | Proxy configuration
-  include: proxy.yml
+  include: proxy/proxy.yml
   when: docker_http_proxy is defined or
         docker_https_proxy is defined or
         docker_no_proxy_params is defined
 
-- name: Docker | Ensure service is started
+- name: Docker | Ensure Docker service is enabled and started
   service:
     name: docker
+    enabled: yes
     state: started
+
+- name: Docker | Compose
+  include: docker-compose/compose.yml
+  when: docker-compose
