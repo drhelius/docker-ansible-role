@@ -40,4 +40,5 @@
   apt:
     name: docker-ce
     state: present
+    update_cache: yes
   notify: Docker | Restart Docker

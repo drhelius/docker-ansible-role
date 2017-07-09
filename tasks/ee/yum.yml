@@ -4,7 +4,7 @@
     content: "{{ docker_ee_url }}"
     dest: /etc/yum/vars/dockerurl
 
-- name: Docker | EE | YUM | Install yum-utils
+- name: Docker | EE | YUM | Ensure yum-utils is installed
   yum:
     name: yum-utils
 
@@ -32,4 +32,5 @@
   yum:
     name: docker-ee
     state: present
+    update_cache: yes
   notify: Docker | Restart Docker

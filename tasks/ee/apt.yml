@@ -16,15 +16,8 @@
 
 - name: Docker | EE | APT | Ensure Docker repository is present
   apt_repository:
-    repo: "{{ docker_apt_repo_url }}"
+    repo: "deb [arch=amd64] {{ docker_ee_url }} {{ ansible_distribution_release }} stable-{{ docker_ee_version }}"
     state: present
-
-- name: Docker | EE | APT | Enable Edge repository
-  apt_repository:
-    repo: "{{ docker_apt_repo_url_edge }}"
-    state: present
-  when: docker_channel == "edge"
-  notify: Docker | CE | Upgrade to Edge
 
 - name: Docker | EE | APT | Ensure deprecated docker packages are removed
   apt:
@@ -34,10 +27,12 @@
     - lxc-docker
     - docker
     - docker-engine
+    - docker.io
     - docker-ce
 
 - name: Docker | EE | APT | Ensure Docker package is installed
   apt:
     name: docker-ee
     state: present
+    update_cache: yes
   notify: Docker | Restart Docker
