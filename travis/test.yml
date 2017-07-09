@@ -3,7 +3,7 @@
 
   pre_tasks:
     - name: Ensure build dependencies are installed (RedHat)
-      yum:
+      package:
         name: "{{ item }}"
         state: present
       with_items:
@@ -15,7 +15,7 @@
       when: ansible_os_family == 'RedHat'
 
     - name: Ensure build dependencies are installed (Debian)
-      apt:
+      package:
         name: "{{ item }}"
         state: present
       with_items:
