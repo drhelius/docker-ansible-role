@@ -30,7 +30,6 @@
   with_items:
     - docker
     - docker-common
-    - docker-selinux
     - docker-engine
 
 - name: Docker | CE | YUM | Ensure Docker package is installed
