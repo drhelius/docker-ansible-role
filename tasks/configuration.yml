@@ -11,6 +11,8 @@
   with_dict: "{{ docker_options }}"
 
 - name: Docker | Configuration | Deploy /etc/docker/daemon.json
-  copy: content="{{ docker_config | to_nice_json }}\n" dest=/etc/docker/daemon.json
+  copy:
+    content: "{{ docker_config | to_nice_json }}\n"
+    dest: /etc/docker/daemon.json
   when: docker_config != {}
   notify: Docker | Restart Docker
