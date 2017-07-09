@@ -9,3 +9,13 @@
     name: apparmor
     state: present
   when: ansible_distribution_version in "14.04"
+
+- name: Docker | CE | Ubuntu | Ensure all APT prerequisits are met
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common

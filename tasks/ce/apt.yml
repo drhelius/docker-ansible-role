@@ -1,14 +1,4 @@
 ---
-- name: Docker | CE | APT | Ensure all APT prerequisits are met
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - software-properties-common
-
 - name: Docker | CE | APT | Perform specific os tasks
   include: "os/{{ ansible_distribution | lower }}.yml"
 
