@@ -1,0 +1,16 @@
+---
+- name: Docker | Configuration | Make sure /etc/docker exists
+  file:
+    path: /etc/docker
+    state: directory
+
+- name: Docker | Configuration | Set the Docker configuration
+  set_fact:
+    docker_config: "{{ docker_config | combine({ item.key: item.value }) }}"
+  when: item.value != ""
+  with_dict: "{{ docker_options }}"
+
+- name: Docker | Configuration | Deploy /etc/docker/daemon.json
+  copy: content="{{ docker_config | to_nice_json }}\n" dest=/etc/docker/daemon.json
+  when: docker_config != {}
+  notify: Docker | Restart Docker

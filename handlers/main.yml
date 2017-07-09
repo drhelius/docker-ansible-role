@@ -1,5 +1,13 @@
 ---
-- name: Restart Docker Service
+- name: Docker | Daemon-reload
+  shell: systemctl daemon-reload
+
+- name: Docker | Restart Docker
   service:
     name: docker
     state: restarted
+
+- name: Docker | CE | Upgrade to Edge
+  package:
+    name: docker-ce
+    state: latest

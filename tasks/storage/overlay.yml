@@ -1,0 +1,5 @@
+---
+- name: Docker | Storage Driver | overlay | Ensure overlay driver is enabled
+  modprobe:
+    name: overlay
+    state: present

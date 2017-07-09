@@ -1,0 +1,11 @@
+---
+- name: Docker | Storage Driver | AUFS | Ensure dependencies for Ubuntu/Debian
+  apt:
+    name: linux-image-extra-virtual
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Docker | Storage Driver | AUFS | ensure AUFS driver is installed
+  modprobe:
+    name: aufs
+    state: present

@@ -1,0 +1,53 @@
+---
+- name: Docker | CE | APT | Ensure all APT prerequisits are met
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Docker | CE | APT | Perform specific os tasks
+  include: "os/{{ ansible_distribution | lower }}.yml"
+
+- name: Docker | CE | APT | Check if the GPG key exists on the host
+  shell: gpg -k {{ docker_apt_key_id }}
+  failed_when: false
+  changed_when: false
+  register: docker_gpg_exists
+
+- name: Docker | CE | APT | Ensure the GPG key exists on the host
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  failed_when: false
+  changed_when: false
+  when: docker_gpg_exists.rc != 0
+
+- name: Docker | CE | APT | Ensure Docker repository is present
+  apt_repository:
+  repo: "{{ docker_apt_repo_url }}"
+  state: present
+
+- name: Docker | CE | APT | Enable Edge repository
+  apt_repository:
+  repo: "{{ docker_apt_repo_url_edge }}"
+  state: present
+  when: docker_channel == "edge"
+  notify: Docker | CE | Upgrade to Edge
+
+- name: Docker | CE | APT | Ensure deprecated docker packages are removed
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - lxc-docker
+    - docker
+    - docker-engine
+    - docker.io
+
+- name: Docker | CE | APT | Ensure Docker package is installed
+  apt:
+    name: docker-ce
+    state: present
+  notify: Docker | Restart Docker

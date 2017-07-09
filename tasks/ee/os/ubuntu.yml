@@ -1,0 +1,28 @@
+---
+- name: Docker | EE | Ubuntu | Ensure linux-image-extra kernal package is installed
+  apt:
+    name: "linux-image-extra-{{ ansible_kernel }}"
+    state: present
+
+- name: Docker | EE | Ubuntu | Ensure AppArmor is installed on Ubuntu 14.04
+  apt:
+    name: apparmor
+    state: present
+  when: ansible_distribution_version in "14.04"
+
+- name: Docker | EE | APT | Check if the GPG key exists on the host
+  shell: gpg -k {{ docker_apt_key_id }}
+  failed_when: false
+  changed_when: false
+  register: docker_gpg_exists
+
+- name: Docker | EE | APT | Ensure the GPG key exists on the host
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  failed_when: false
+  changed_when: false
+  when: docker_gpg_exists.rc != 0
+
+- name: Docker | EE | APT | Ensure Docker repository is present
+  apt_repository:
+    repo: "{{ docker_apt_repo_url }}"
+    state: present
