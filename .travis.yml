@@ -5,7 +5,7 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
     extra_vars: ""
   - distribution: ubuntu
     version: xenial
@@ -37,33 +37,33 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: ubuntu
     version: xenial
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: ubuntu
     version: trusty
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: debian
     version: stretch
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: debian
     version: jessie
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: debian
     version: wheezy
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
 
 services:
   - docker
