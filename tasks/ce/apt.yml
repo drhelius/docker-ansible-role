@@ -27,7 +27,7 @@
 - name: Docker | CE | APT | Ensure Docker repository is present
   apt_repository:
     repo: "{{ docker_apt_repo_url }}"
-  state: present
+    state: present
 
 - name: Docker | CE | APT | Enable Edge repository
   apt_repository:
