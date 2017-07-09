@@ -7,4 +7,4 @@ RUN apt-add-repository -y ppa:ansible/ansible && apt-get update && apt-get insta
     ansible \
  && rm -rf /var/lib/apt/lists/*
 
-RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hostss
+RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
