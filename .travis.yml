@@ -38,32 +38,32 @@ env:
     version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000'"
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge"
   - distribution: ubuntu
     version: xenial
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars \"docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000\""
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000"
   - distribution: ubuntu
     version: trusty
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge"
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge"
   - distribution: debian
     version: stretch
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge"
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge"
   - distribution: debian
     version: jessie
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge"
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge"
   - distribution: debian
     version: wheezy
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge"
+    extra_vars: --extra-vars "docker_compose=yes docker_channel=edge"
 
 services:
   - docker
