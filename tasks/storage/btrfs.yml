@@ -10,12 +10,12 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Docker | Storage Driver | Btrfs | Ensure btrfs driver is enabled
+- name: Docker | Storage Driver | Btrfs | Ensure Btrfs driver is enabled
   modprobe:
     name: btrfs
     state: present
 
-- name: Docker | Storage Driver | Btrfs | Ensure btrfs storage filesystem is created
+- name: Docker | Storage Driver | Btrfs | Ensure Btrfs storage filesystem is created
   filesystem:
     dev: "{{ docker_block_device }}"
     fstype: btrfs

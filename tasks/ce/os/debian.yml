@@ -1,11 +1,5 @@
 ---
-- name: Docker | CE | Debian | Ensure lates kernel is present on Wheezy
-  apt:
-    name: linux-image-amd64
-    state: latest
-  when: ansible_distribution_release == "wheezy"
-
-- name: Docker | CE | Debian | Ensure all APT prerequisits are met on Jessie/Stretch
+- name: Docker | CE | Debian | Ensure all APT prerequisites are met
   apt:
     name: "{{ item }}"
     state: present
@@ -15,15 +9,3 @@
     - curl
     - gnupg2
     - software-properties-common
-  when: ansible_distribution_release == "jessie" or ansible_distribution_release == "stretch"
-
-- name: Docker | CE | Debian | Ensure all APT prerequisits are met on Wheezy
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - python-software-properties
-  when: ansible_distribution_release == "wheezy"

@@ -5,7 +5,7 @@
     state: present
   when: ansible_os_family == "Debian"
 
-- name: Docker | Storage Driver | AUFS | ensure AUFS driver is installed
+- name: Docker | Storage Driver | AUFS | Ensure AUFS driver is installed
   modprobe:
     name: aufs
     state: present

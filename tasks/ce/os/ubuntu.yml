@@ -1,5 +1,5 @@
 ---
-- name: Docker | CE | Ubuntu | Ensure linux-image-extra kernal package is installed
+- name: Docker | CE | Ubuntu | Ensure linux-image-extra kernel package is installed
   apt:
     name: "linux-image-extra-{{ ansible_kernel }}"
     state: present
@@ -10,7 +10,7 @@
     state: present
   when: ansible_distribution_version in "14.04"
 
-- name: Docker | CE | Ubuntu | Ensure all APT prerequisits are met
+- name: Docker | CE | Ubuntu | Ensure all APT prerequisites are met
   apt:
     name: "{{ item }}"
     state: present

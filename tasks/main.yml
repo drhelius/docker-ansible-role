@@ -13,7 +13,7 @@
 - name: Docker | Installation
   include: "{{ docker_edition }}/{{ ansible_pkg_mgr }}.yml"
 
-- name: Docker | Ensure service starts at boot
+- name: Docker | Ensure Docker service starts at boot
   service:
     name: docker
     enabled: yes
@@ -27,7 +27,7 @@
         docker_https_proxy is defined or
         docker_no_proxy_params is defined
 
-- name: Docker | Ensure service started
+- name: Docker | Ensure service is started
   service:
     name: docker
     state: started
