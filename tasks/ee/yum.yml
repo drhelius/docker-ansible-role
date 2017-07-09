@@ -23,8 +23,6 @@
     - docker
     - docker-common
     - docker-selinux
-    - container-selinux
-    - docker-engine-selinux
     - docker-engine
     - docker-ce
 

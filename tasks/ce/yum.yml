@@ -31,10 +31,7 @@
     - docker
     - docker-common
     - docker-selinux
-    - container-selinux
-    - docker-engine-selinux
     - docker-engine
-    - docker-ce
 
 - name: Docker | CE | YUM | Ensure Docker package is installed
   yum:

@@ -5,7 +5,17 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
+    run_opts: "'--privileged"
+    extra_vars: ""
+  - distribution: fedora
+    version: 25
+    init: /usr/lib/systemd/systemd
+    run_opts: "'--privileged"
+    extra_vars: ""
+  - distribution: fedora
+    version: 24
+    init: /usr/lib/systemd/systemd
+    run_opts: "'--privileged"
     extra_vars: ""
   - distribution: ubuntu
     version: xenial
@@ -32,7 +42,17 @@ env:
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
-    run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
+    run_opts: "'--privileged"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
+  - distribution: fedora
+    version: 25
+    init: /usr/lib/systemd/systemd
+    run_opts: "'--privileged"
+    extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
+  - distribution: fedora
+    version: 24
+    init: /usr/lib/systemd/systemd
+    run_opts: "'--privileged"
     extra_vars: "'--extra-vars @/etc/ansible/roles/docker_ansible_role/travis/extra_vars.json'"
   - distribution: ubuntu
     version: xenial
