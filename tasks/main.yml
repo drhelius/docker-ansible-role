@@ -23,4 +23,4 @@
 
 - name: Docker | Compose
   include: docker-compose/compose.yml
-  when: docker-compose
+  when: docker_compose
