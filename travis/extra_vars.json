@@ -1,4 +1,4 @@
 {
-    "docker_compose": "yes",
+    "docker_compose": "true",
     "docker_channel": "edge"
 }
