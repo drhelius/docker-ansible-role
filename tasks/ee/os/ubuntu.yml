@@ -11,7 +11,7 @@
   when: ansible_distribution_version in "14.04"
 
 - name: Docker | EE | APT | Check if the GPG key exists on the host
-  shell: gpg -k {{ docker_apt_key_id }}
+  shell: "gpg -k {{ docker_apt_key_id }}"
   failed_when: false
   changed_when: false
   register: docker_gpg_exists

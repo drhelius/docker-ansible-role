@@ -8,15 +8,31 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     extra_vars: ""
   - distribution: ubuntu
-    version: 16.04
+    version: xenial
     init: /sbin/init
     run_opts: ""
     extra_vars: ""
   - distribution: ubuntu
-    version: 14.04
+    version: trusty
     init: /sbin/init
     run_opts: ""
     extra_vars: ""
+  - distribution: debian
+    version: stretch
+    init: /sbin/init
+    run_opts: ""
+    extra_vars: ""
+  - distribution: debian
+    version: jessie
+    init: /sbin/init
+    run_opts: ""
+    extra_vars: ""
+  - distribution: debian
+    version: wheezy
+    init: /sbin/init
+    run_opts: ""
+    extra_vars: ""
+
 
   - distribution: centos
     version: 7
@@ -27,12 +43,12 @@ env:
     version: 16.04
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000'"
+    extra_vars: "--extra-vars \"docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000\""
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
-    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge docker_options.insecure-registries=myregistry:5000'"
+    extra_vars: "--extra-vars 'docker_compose=yes docker_channel=edge"
 
 services:
   - docker
