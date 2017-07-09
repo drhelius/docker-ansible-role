@@ -12,7 +12,7 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-RUN dnf -y install python-pip libffi-devel redhat-rpm-config python-devel openssl-devel git @development-tools
+RUN dnf -y install python-pip libffi-devel redhat-rpm-config python-devel openssl-devel sudo git @development-tools
 
 RUN pip install ansible
 
