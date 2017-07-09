@@ -32,5 +32,6 @@ galaxy_info:
     - ubuntu
     - centos
     - debian
+    - fedora
     - compose
     - containers
