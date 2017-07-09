@@ -1,7 +1,7 @@
 ---
 - name: Docker | CE | Debian | Ensure lates kernel is present on Wheezy
   apt:
-    name: linux-image-flavour
+    name: linux-image-amd64
     state: latest
   when: ansible_distribution_release == "wheezy"
 
