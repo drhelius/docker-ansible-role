@@ -13,7 +13,7 @@
   include: "os/{{ ansible_distribution | lower }}.yml"
 
 - name: Docker | CE | APT | Check if the GPG key exists on the host
-  shell: gpg -k {{ docker_apt_key_id }}
+  shell: "gpg -k {{ docker_apt_key_id }}"
   failed_when: false
   changed_when: false
   register: docker_gpg_exists
@@ -26,13 +26,13 @@
 
 - name: Docker | CE | APT | Ensure Docker repository is present
   apt_repository:
-  repo: "{{ docker_apt_repo_url }}"
+    repo: "{{ docker_apt_repo_url }}"
   state: present
 
 - name: Docker | CE | APT | Enable Edge repository
   apt_repository:
-  repo: "{{ docker_apt_repo_url_edge }}"
-  state: present
+    repo: "{{ docker_apt_repo_url_edge }}"
+    state: present
   when: docker_channel == "edge"
   notify: Docker | CE | Upgrade to Edge
 
