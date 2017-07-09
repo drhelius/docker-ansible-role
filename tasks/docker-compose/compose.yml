@@ -1,6 +1,6 @@
 ---
-- name: Docker | Compose | Check current docker-compose version
-  command: docker-compose --version
+- name: Docker | Compose | Check current version
+  command: "docker-compose --version"
   register: docker_compose_current_version
   changed_when: false
   failed_when: false
