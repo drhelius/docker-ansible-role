@@ -1,11 +1,9 @@
 ---
-dependencies: []
-
 galaxy_info:
   author: Ignacio Sanchez Gines
   description: Ansible role to install Docker and Docker Compose
   company:
-  license: MIT
+  license: license (MIT)
   min_ansible_version: 2.0.0
   issue_tracker_url: https://github.com/drhelius/docker-ansible-role/issues
   github_branch: master
@@ -35,3 +33,5 @@ galaxy_info:
     - fedora
     - compose
     - containers
+
+dependencies: []
