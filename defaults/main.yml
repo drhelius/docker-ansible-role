@@ -2,6 +2,7 @@
 docker_config: {}
 docker_channel: stable
 docker_compose: no
+docker_compose_version: 1.14.0
 
 docker_options:
   api-cors-header: "{{ docker_api_cors_header | default(None) }}"
