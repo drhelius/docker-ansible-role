@@ -16,10 +16,15 @@
         docker_no_proxy_params is defined
 
 - name: Docker | Ensure Docker service is enabled and started
-  systemd:
+  service:
     name: docker
     enabled: yes
     state: started
+  when: ansible_distribution != "Fedora"
+
+- name: Docker | Ensure Docker service is enabled and started (Fedora)
+  shell: systemctl enable docker && systemctl start fedora
+  when: ansible_distribution == "Fedora"
 
 - name: Docker | Compose
   include: docker-compose/compose.yml
