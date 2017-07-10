@@ -16,7 +16,7 @@
         docker_no_proxy_params is defined
 
 - name: Docker | Ensure Docker service is enabled and started
-  service:
+  systemd:
     name: docker
     enabled: yes
     state: started
