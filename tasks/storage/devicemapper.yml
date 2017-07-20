@@ -23,6 +23,7 @@
     lv: thinpoolmeta
     size: 1%VG
     opts: "--wipesignatures y"
+  changed_when: false
 
 - name: Docker | Storage Driver | devicemapper | Ensure volumes are converted to thinpool
   shell: lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
